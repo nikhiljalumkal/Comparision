@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} - Price History</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+    <img src="{{ product.image_url }}" alt="{{ product.name }}" width="200"><br>
+    <strong>Current Price: ₹{{ product.current_price }}</strong><br>
+    <a href="{{ product.product_url }}" target="_blank">Buy Now</a>
+
+    <h2>Price History</h2>
+    <canvas id="priceChart" width="400" height="200"></canvas>
+
+    <script>
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        const priceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for entry in price_history %}'{{ entry.date }}',{% endfor %}],
+                datasets: [{
+                    label: 'Price (INR)',
+                    data: [{% for entry in price_history %}{{ entry.price }},{% endfor %}],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true }
+                },
+                scales: {
+                    y: { beginAtZero: false }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
