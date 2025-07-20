@@ -10,7 +10,7 @@ class Command(BaseCommand):
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
         }
-        url = "https://www.flipkart.com/p/itm...sampleurl..."
+        url = "https://www.flipkart.com/sample-product-url"  # Replace with real URL for testing
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, "html.parser")
 
