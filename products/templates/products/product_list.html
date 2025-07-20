@@ -15,7 +15,7 @@
         <div class="product">
             <img src="{{ product.image_url }}" alt="{{ product.name }}" width="100">
             <div>
-                <a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a><br>
+                <a href="{{ product.get_affiliate_url }}" target="_blank">{{ product.name }}</a>
                 <strong>₹{{ product.current_price }}</strong>
             </div>
         </div>

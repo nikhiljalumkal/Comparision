@@ -26,3 +26,11 @@ class PriceHistory(models.Model):
 
     def __str__(self):
         return f"{self.product.name} - {self.price} on {self.date}"
+
+def get_affiliate_url(self):
+    if self.store.name == "Amazon":
+        return f"{self.product_url}?tag=myfitprice00a-21"
+    elif self.store.name == "Flipkart":
+        return f"{self.product_url}&affid=nikhiljal"
+    return self.product_url
+
